@@ -1,0 +1,26 @@
+# Python virtual environment
+.venv/
+
+# Python cache and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+
+# dbt generated files
+target/
+dbt_packages/
+logs/
+
+# Generated and incoming data
+data/generated/
+data/incoming/
+data/quarantine/
+
+# Editor and operating system files
+.DS_Store
+Thumbs.db
