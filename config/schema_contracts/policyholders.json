@@ -6,14 +6,14 @@
   "business_key": ["policyholder_id"],
   "required_columns": [
     "policyholder_id",
-    "name",
+    "full_name",
     "city",
     "email",
     "updated_at"
   ],
   "columns": {
     "policyholder_id": "string",
-    "name": "string",
+    "full_name": "string",
     "city": "string",
     "email": "string",
     "updated_at": "timestamp"
