@@ -21,6 +21,9 @@ data/generated/
 data/incoming/
 data/quarantine/
 
+# Generated quality reports
+reports/
+
 # Editor and operating system files
 .DS_Store
 Thumbs.db
