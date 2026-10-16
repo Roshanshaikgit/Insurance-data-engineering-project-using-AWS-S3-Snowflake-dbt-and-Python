@@ -1,0 +1,33 @@
+
+{
+  "dataset": "policies",
+  "contract_version": "1.0",
+  "description": "Approved schema for insurance policy extracts",
+  "business_key": ["policy_id"],
+  "required_columns": [
+    "policy_id",
+    "policyholder_id",
+    "agent_id",
+    "policy_type",
+    "premium_amount",
+    "policy_status",
+    "effective_date",
+    "updated_at"
+  ],
+  "columns": {
+    "policy_id": "string",
+    "policyholder_id": "string",
+    "agent_id": "string",
+    "policy_type": "string",
+    "premium_amount": "number",
+    "policy_status": "string",
+    "effective_date": "date",
+    "updated_at": "timestamp"
+  },
+  "rules": {
+    "business_key_not_null": true,
+    "business_key_unique_within_batch": true,
+    "allow_unexpected_columns": false,
+    "allow_missing_required_columns": false
+  }
+}

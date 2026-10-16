@@ -1,0 +1,25 @@
+
+{
+  "dataset": "agents",
+  "contract_version": "1.0",
+  "description": "Approved schema for insurance agent extracts",
+  "business_key": ["agent_id"],
+  "required_columns": [
+    "agent_id",
+    "agent_name",
+    "region",
+    "updated_at"
+  ],
+  "columns": {
+    "agent_id": "string",
+    "agent_name": "string",
+    "region": "string",
+    "updated_at": "timestamp"
+  },
+  "rules": {
+    "business_key_not_null": true,
+    "business_key_unique_within_batch": true,
+    "allow_unexpected_columns": false,
+    "allow_missing_required_columns": false
+  }
+}

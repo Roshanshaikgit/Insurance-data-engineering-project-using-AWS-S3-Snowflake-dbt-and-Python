@@ -1,0 +1,29 @@
+
+{
+  "dataset": "claims",
+  "contract_version": "1.0",
+  "description": "Approved schema for insurance claim extracts",
+  "business_key": ["claim_id"],
+  "required_columns": [
+    "claim_id",
+    "policy_id",
+    "claim_amount",
+    "claim_status",
+    "claim_date",
+    "updated_at"
+  ],
+  "columns": {
+    "claim_id": "string",
+    "policy_id": "string",
+    "claim_amount": "number",
+    "claim_status": "string",
+    "claim_date": "date",
+    "updated_at": "timestamp"
+  },
+  "rules": {
+    "business_key_not_null": true,
+    "business_key_unique_within_batch": true,
+    "allow_unexpected_columns": false,
+    "allow_missing_required_columns": false
+  }
+}
