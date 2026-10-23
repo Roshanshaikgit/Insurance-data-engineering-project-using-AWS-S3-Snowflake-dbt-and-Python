@@ -1,0 +1,19 @@
+{
+  "policies": {
+    "policy_status": [
+      "policy_status",
+      "status",
+      "p_status",
+      "po_status"
+    ]
+  },
+  "policyholders": {
+    "name": [
+      "name",
+      "full_name"
+    ]
+  },
+  "claims": {},
+  "agents": {},
+  "payments": {}
+}

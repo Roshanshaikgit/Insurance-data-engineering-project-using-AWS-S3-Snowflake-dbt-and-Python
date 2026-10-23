@@ -1,0 +1,16 @@
+{{ config(materialized='table') }}
+
+SELECT
+    c.CLAIM_STATUS,
+    p.POLICY_TYPE,
+    COUNT(DISTINCT c.CLAIM_ID) AS TOTAL_CLAIMS,
+    SUM(c.CLAIM_AMOUNT) AS TOTAL_CLAIM_AMOUNT,
+    AVG(c.CLAIM_AMOUNT) AS AVG_CLAIM_AMOUNT,
+    MIN(c.CLAIM_DATE) AS FIRST_CLAIM_DATE,
+    MAX(c.CLAIM_DATE) AS LATEST_CLAIM_DATE
+FROM {{ ref('silver_claims') }} c
+LEFT JOIN {{ ref('silver_policies') }} p
+    ON c.POLICY_ID = p.POLICY_ID
+GROUP BY
+    c.CLAIM_STATUS,
+    p.POLICY_TYPE

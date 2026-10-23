@@ -27,3 +27,15 @@ reports/
 # Editor and operating system files
 .DS_Store
 Thumbs.db
+
+# Daily batch data and manifests
+data/daily_batches/
+
+# Local exports and temporary inspection files
+INSURANCE_DB.RAW.INSURANCE_CSV_FORMAT
+loader_current.txt
+
+# Backup and recovery scripts - keep local until reviewed
+scripts/*backup*.py
+scripts/*before*.py
+scripts/*recovered*.py

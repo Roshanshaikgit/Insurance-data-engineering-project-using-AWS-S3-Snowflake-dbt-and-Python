@@ -1,16 +1,25 @@
 
+import os
 import subprocess
 import sys
+import getpass
 from datetime import datetime, timezone
 from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DBT_PROJECT = PROJECT_ROOT / "dbt_project"
 
 STAGES = [
     (
         "Source data quality gate",
         [sys.executable, "scripts/run_quality_gate.py"],
+        PROJECT_ROOT,
+    ),
+    (
+        "dbt build: Bronze, Silver, Gold and data tests",
+        [str(PROJECT_ROOT / ".venv" / "Scripts" / "dbt.exe"), "build"],
+        DBT_PROJECT,
     ),
 ]
 
@@ -20,14 +29,23 @@ def main():
     print("Starting insurance data pipeline.", flush=True)
     print(f"Started at UTC: {started_at.isoformat()}", flush=True)
 
-    for stage_name, command in STAGES:
+    env = os.environ.copy()
+
+    # Prompt securely if the Snowflake password is not already available.
+    if not env.get("SNOWFLAKE_PASSWORD"):
+        env["SNOWFLAKE_PASSWORD"] = getpass.getpass(
+            "Snowflake password: "
+        )
+
+    for stage_name, command, working_directory in STAGES:
         print(f"\n{'=' * 60}", flush=True)
         print(f"Stage: {stage_name}", flush=True)
         print("=" * 60, flush=True)
 
         result = subprocess.run(
             command,
-            cwd=PROJECT_ROOT,
+            cwd=working_directory,
+            env=env,
             check=False,
         )
 

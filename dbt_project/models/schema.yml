@@ -1,0 +1,59 @@
+
+version: 2
+
+models:
+  - name: silver_policyholders
+    columns:
+      - name: POLICYHOLDER_ID
+        data_tests:
+          - not_null
+          - unique
+
+  - name: silver_policies
+    columns:
+      - name: POLICY_ID
+        data_tests:
+          - not_null
+          - unique
+      - name: POLICYHOLDER_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('silver_policyholders')
+                field: POLICYHOLDER_ID
+
+  - name: silver_claims
+    columns:
+      - name: CLAIM_ID
+        data_tests:
+          - not_null
+          - unique
+      - name: POLICY_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('silver_policies')
+                field: POLICY_ID
+
+  - name: silver_agents
+    columns:
+      - name: AGENT_ID
+        data_tests:
+          - not_null
+          - unique
+
+  - name: silver_payments
+    columns:
+      - name: PAYMENT_ID
+        data_tests:
+          - not_null
+          - unique
+      - name: POLICY_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('silver_policies')
+                field: POLICY_ID

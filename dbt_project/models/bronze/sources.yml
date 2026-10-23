@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: insurance_raw
+    database: INSURANCE_DB
+    schema: RAW
+    description: "Raw insurance data ingested from AWS S3."
+
+    tables:
+      - name: raw_policyholders
+        description: "Raw policyholder records."
+        config:
+          loaded_at_field: INGESTED_AT
+          freshness:
+            warn_after: {count: 24, period: hour}
+            error_after: {count: 48, period: hour}
+
+      - name: raw_policies
+        description: "Raw insurance policy records."
+
+      - name: raw_claims
+        description: "Raw insurance claim records."
+
+      - name: raw_agents
+        description: "Raw insurance agent records."
+
+      - name: raw_payments
+        description: "Raw insurance payment records."

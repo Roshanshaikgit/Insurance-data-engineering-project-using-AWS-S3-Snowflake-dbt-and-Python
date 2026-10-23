@@ -1,3 +1,4 @@
 pandas
 pytest
 PyYAML
+dbt-snowflake==1.12.3
